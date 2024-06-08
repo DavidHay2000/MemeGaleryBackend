@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\GalleriesController;
 use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Users;
@@ -27,6 +28,10 @@ Route::apiResource('photos', PhotosController::class);
 Route::apiResource('users', Users::class);
 Route::post('/register', [Users::class,'register']);
 Route::post('/login', [Users::class, 'login']);
+Route::get('/allUsers', [Admin::class, 'getAllUsers']);
+Route::delete('/delete/{id}', [Admin::class, 'deleteUser']);
+Route::post('/adminRegister', [Admin::class, 'AdminRegister']);
+Route::post('/adminLogin', [Admin::class, 'adimlogin']);
 
 
 Route::get('/galleries/{galleryId}/photos', [PhotosController::class, 'getPhotosByGallery']);
