@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galleries;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class GalleriesController extends Controller
 {
+    public function getGalleriesByUser($userID)
+    {
+        $user = User::find($userID);
+        $galleries = $user->galleries;
+        if ($galleries!= null) {
+            return response()->json($galleries);
+        }
+        return response()->json(['message' => 'Not found'], 404);
+        
+    }
+    
     /**
      * Display a listing of the resource.
      */

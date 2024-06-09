@@ -36,14 +36,24 @@ class Users extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Invalid user'], 402);
         }
 
         return response()->json($user->id, 200);
     }
 
     
-
+     /**
+     * Display the specified resource.
+     */
+    public function show($user)
+    {
+        $user = User::find($user);
+        if ($user!= null) {
+            return $user;
+        }
+        return response()->json(['message' => 'Not found'], 404);
+    }
     
         
 }

@@ -35,3 +35,4 @@ Route::post('/adminLogin', [Admin::class, 'adimlogin']);
 
 
 Route::get('/galleries/{galleryId}/photos', [PhotosController::class, 'getPhotosByGallery']);
+Route::get('/users/{userID}/galleries', [GalleriesController::class, 'getGalleriesByUser']);
